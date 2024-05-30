@@ -38,9 +38,9 @@ function startTimeandScore() {
         if(score%1000 === 0){
         playWav("nextmille");    
     }
-    if (score >= 10000) {
+   /* if (score >= 1000) {
         toggleTheme();
-    }
+    }*/
     moveBlock();
     
     }, 1000);
@@ -104,7 +104,8 @@ function startGame() {
 }
 
 // Function to toggle the theme
-function toggleTheme() {
+/*function toggleTheme() {
     document.body.classList.toggle("inverted-theme");
-}
+}*/
 document.addEventListener("click", jump);
+
