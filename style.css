@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+#game {
+    width: 500px;
+    height: 200px;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+    border: 20px solid pink; 
+    border-radius: 10px;
+    
+}
+
+#character {
+    width: 72px;
+    height: 72px;
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+}
+
+#block {
+    width: 20px;
+    height: 20px;
+    background-color: grey;
+    position: absolute;
+    bottom: 0;
+    left: 480px;
+}
+
+#start-btn {
+    background-color: pink;
+    font-family: 'Press Start 2P', cursive;
+    position: absolute;
+    top: 250px;
+    left: 200px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#start-btn:active {
+    background-color: white;
+    color: pink;
+
+}
+
+.data {
+    font-family: 'Press Start 2P', cursive;
+    color: grey;
+    position: absolute;
+    top: 10px;
+    left: 350px;
+}
+
+
+
+/* Thème inversé */
+.inverted-theme #game {
+    border-color: black;
+    background-color: white;
+}
+
+.inverted-theme #character {
+    background-color: black;
+}
+
+.inverted-theme #block {
+    background-color: white;
+}
+
+.inverted-theme #start-btn {
+    background-color: black;
+    color: white;
+}
+
+.inverted-theme #start-btn:active {
+    background-color: grey;
+    color: black;
+}
+
+.inverted-theme .data {
+    color: black;
+}
+@keyframes block {
+    0% { left: 480px; }
+    100% { left: -5px; }
+}
+
+@keyframes jump {
+    0% { bottom: 0; }
+    30% { bottom: 72px; }
+    70% { bottom: 72px; }
+    100% { bottom: 0; }
+}
+
+.animate {
+    animation: jump 500ms;
+}
+
+.moveblock {
+    animation: block 2s infinite linear;
+}
+
+.moveblock-fast{
+    animation: block 1.75s infinite linear;
+}
+
+.moveblock-faster{
+    animation: block 1.60s infinite linear;
+}
+
+.moveblock-fastest{
+    animation: block 1.45s infinite linear;
+}
+
+
+
+
