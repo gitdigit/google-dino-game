@@ -36,13 +36,37 @@ function startTimeandScore() {
         scoreElement.innerText = `Score: ${score}`;
         
         if(score%1000 === 0){
-        playWav("nextmille");
-
+        playWav("nextmille");    
     }
+    if (score >= 10000) {
+        toggleTheme();
+    }
+    moveBlock();
+    
     }, 1000);
    
 }
 
+function moveBlock() {
+    if (score < 1000) {
+        block.classList.add("moveblock");
+    } else if (score >= 1000 && score < 2000) {
+        if (block.classList.contains("moveblock")) {
+            block.classList.remove("moveblock");
+            block.classList.add("moveblock-fast");
+        }
+    } else if (score >= 2000 && score < 3000) {
+        if (block.classList.contains("moveblock-fast")) {
+            block.classList.remove("moveblock-fast");
+            block.classList.add("moveblock-faster");
+        }
+    } else if (score >= 3000) {
+        if (block.classList.contains("moveblock-faster")) {
+            block.classList.remove("moveblock-faster");
+            block.classList.add("moveblock-fastest");
+        }
+    }
+}
 function stopTimer() {
     clearInterval(timerInterval);
 }
@@ -60,15 +84,16 @@ function iniGame() {
 
 function startGame() {
     if (!iniGame()) {
-        block.classList.add("moveblock");
+       // moveBlock();
+        //block.classList.add("moveblock-fast");
         startTimeandScore();
         checkDeadInterval = setInterval(function() {
             var characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
             var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
             if (blockLeft < 90 && blockLeft > 50 && characterBottom <= 20) {
-                block.classList.remove("moveblock");
-                alert("You lost, your score is:  " + score + " !");
+                block.classList.remove("moveblock", "moveblock-fast", "moveblock-faster", "moveblock-fastest");
                 playSound("lose");
+                alert("You lost, your score is:  " + score + " !");
                 stopTimer();
                 clearInterval(checkDeadInterval);
                 resetTimeandScore();
@@ -78,4 +103,8 @@ function startGame() {
     }
 }
 
+// Function to toggle the theme
+function toggleTheme() {
+    document.body.classList.toggle("inverted-theme");
+}
 document.addEventListener("click", jump);
